@@ -5,6 +5,12 @@ class GameScene extends Phaser.Scene {
 	preload = function () {
 		this.load.image('bg', '/assets/sprites/backg.png'); //Загрузка бг на клієнт
 		this.load.image('card', '/assets/sprites/card.png'); //Загрузка карти на клієнт
+
+		this.load.image('card1', '/assets/sprites/card1.png');
+		this.load.image('card2', '/assets/sprites/card2.png');
+		this.load.image('card3', '/assets/sprites/card3.png');
+		this.load.image('card4', '/assets/sprites/card4.png');
+		this.load.image('card5', '/assets/sprites/card5.png');
 	}
 	create() {
 		this.createBackground();
@@ -16,10 +22,19 @@ class GameScene extends Phaser.Scene {
 	createCard() {
 		this.cards = [];
 		let positions = this.getCardsPositions();
+		Phaser.Utils.Array.Shuffle(positions);// Змішування позицій карт 
 
-		for (let position of positions) { //Цикл який проходиться по кожній позиції і для кожної позиції створює новий спрайт
-			this.cards.push(new Card(this, position));
+		for (let value of config.cards) {
+			for (let i = 0; i < 2; i++) {
+				this.cards.push(new Card(this, value, positions.pop()));
+			}
 		}
+
+		this.input.on("gameobjectdown", this.onCardClicked, this);
+	}
+
+	onCardClicked(pointer, card) {
+		card.open();
 	}
 
 	getCardsPositions() {
