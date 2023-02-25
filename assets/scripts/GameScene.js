@@ -3,14 +3,14 @@ class GameScene extends Phaser.Scene {
 		super("Game");
 	}
 	preload = function () {
-		this.load.image('bg', '/assets/sprites/backg.png'); //Загрузка бг на клієнт
-		this.load.image('card', '/assets/sprites/card.png'); //Загрузка карти на клієнт
+		this.load.image('bg', 'assets/sprites/backg.png'); //Загрузка бг на клієнт
+		this.load.image('card', 'assets/sprites/card.png'); //Загрузка карти на клієнт
 
-		this.load.image('card1', '/assets/sprites/card1.png');
-		this.load.image('card2', '/assets/sprites/card2.png');
-		this.load.image('card3', '/assets/sprites/card3.png');
-		this.load.image('card4', '/assets/sprites/card4.png');
-		this.load.image('card5', '/assets/sprites/card5.png');
+		this.load.image('card1', 'assets/sprites/card1.png');
+		this.load.image('card2', 'assets/sprites/card2.png');
+		this.load.image('card3', 'assets/sprites/card3.png');
+		this.load.image('card4', 'assets/sprites/card4.png');
+		this.load.image('card5', 'assets/sprites/card5.png');
 	}
 	create() {
 		this.createBackground();
