@@ -15,6 +15,7 @@ class GameScene extends Phaser.Scene {
 	create() {
 		this.createBackground();
 		this.createCard();
+		this.openedCard = null;
 	}
 	createBackground() {
 		this.add.sprite(0, 0, 'bg').setOrigin(0, 0); //Загружає бг на сторіну в координатах 0,0
@@ -34,6 +35,20 @@ class GameScene extends Phaser.Scene {
 	}
 
 	onCardClicked(pointer, card) {
+		if (card.opened) {
+			return false;
+		}
+		if (this.openedCard) {
+			if (this.openedCard.value === card.value) {
+				this.openedCard = null;
+			} else {
+				this.openedCard.close();
+				this.openedCard = card;
+			}
+		} else {
+			this.openedCard = card;
+		}
+
 		card.open();
 	}
 
