@@ -16,6 +16,7 @@ class GameScene extends Phaser.Scene {
 		this.createBackground();
 		this.createCard();
 		this.openedCard = null;
+		this.openedCardCount = 0;
 	}
 	createBackground() {
 		this.add.sprite(0, 0, 'bg').setOrigin(0, 0); //Загружає бг на сторіну в координатах 0,0
@@ -41,6 +42,7 @@ class GameScene extends Phaser.Scene {
 		if (this.openedCard) {
 			if (this.openedCard.value === card.value) {
 				this.openedCard = null;
+				++this.openedCardCount;
 			} else {
 				this.openedCard.close();
 				this.openedCard = card;
@@ -50,6 +52,11 @@ class GameScene extends Phaser.Scene {
 		}
 
 		card.open();
+
+		if (this.openedCardCount === this.cards.length / 2) {
+			alert("Congratulations on the victory, you will be redirected to the next page, to confirm the action click 'OK'");
+			window.location.href = "https://github.com/Twisterday/game-card-memory";
+		}
 	}
 
 	getCardsPositions() {
