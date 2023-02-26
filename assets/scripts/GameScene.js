@@ -55,7 +55,7 @@ class GameScene extends Phaser.Scene {
 
 		if (this.openedCardCount === this.cards.length / 2) {
 			alert("Congratulations on the victory, you will be redirected to the next page, to confirm the action click 'OK'");
-			window.location.href = "https://github.com/Twisterday/game-card-memory";
+			window.location.href = "https://github.com/Twisterday";
 		}
 	}
 
