@@ -54,9 +54,12 @@ class GameScene extends Phaser.Scene {
 		card.open();
 
 		if (this.openedCardCount === this.cards.length / 2) {
-			alert("Congratulations on the victory, you will be redirected to the next page, to confirm the action click 'OK'");
-			window.location.href = "https://github.com/Twisterday";
+			setTimeout(function () {
+				alert("Congratulations on the victory, you will be redirected to the next page, to confirm the action click 'OK'");
+				window.location.href = "https://github.com/Twisterday";
+			}, 150);
 		}
+
 	}
 
 	getCardsPositions() {
