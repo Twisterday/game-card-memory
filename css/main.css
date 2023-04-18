@@ -1,0 +1,12 @@
+@media screen and (max-width: 767px) {
+	body {
+		transform: rotate(-90deg);
+		transform-origin: top left;
+		width: 100vh;
+		height: 100vw;
+		overflow-x: hidden;
+		position: absolute;
+		top: 100%;
+		left: 0;
+	}
+}
