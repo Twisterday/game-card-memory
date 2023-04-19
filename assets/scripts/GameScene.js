@@ -83,7 +83,7 @@ class GameScene extends Phaser.Scene {
 		card.open();
 
 		if (this.openedCardCount === this.cards.length / 2) {
-			event.remove();
+			this.time.paused = true;
 			setTimeout(function () {
 				openModal();
 				modal.addEventListener('click', function closeModal() {
