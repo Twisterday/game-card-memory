@@ -55,8 +55,12 @@ class GameScene extends Phaser.Scene {
 
 		if (this.openedCardCount === this.cards.length / 2) {
 			setTimeout(function () {
-				alert("Congratulations on the victory, you will be redirected to the next page, to confirm the action click 'OK'");
-				window.location.href = "https://github.com/Twisterday";
+				openModal();
+				modal.addEventListener('click', function closeModal() {
+					modal.classList.remove('active');
+					window.location.href = "https://github.com/Twisterday";
+					modal.removeEventListener('click', closeModal);
+				});
 			}, 150);
 		}
 
@@ -66,8 +70,8 @@ class GameScene extends Phaser.Scene {
 		let positions = [];
 		let cardWidth = 160 + 15;
 		let cardHeight = 250 + 15;
-		let offsetX = (this.sys.game.config.width - cardWidth * config.cols) / 2; // обчислення для позиціонування карт по центру вікна
-		let offsetY = (this.sys.game.config.height - cardHeight * config.rows) / 4; // обчислення для позиціонування карт по центру вікна
+		let offsetX = (this.sys.game.config.width - cardWidth * config.cols) / 2 + cardWidth / 2;
+		let offsetY = (this.sys.game.config.height - cardHeight * config.rows) / 4 + cardHeight / 2.25;
 
 		for (let row = 0; row < config.rows; row++) {
 			for (let col = 0; col < config.cols; col++) {
