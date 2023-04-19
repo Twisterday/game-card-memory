@@ -12,8 +12,37 @@ class GameScene extends Phaser.Scene {
 		this.load.image('card4', 'assets/sprites/card4.png');
 		this.load.image('card5', 'assets/sprites/card5.png');
 	}
+
+	createText() {
+		this.timeoutText = this.add.text(20, 50, "Time:", {
+			font: '28px Silkscreen',
+			fill: '#ffffff'
+		});
+	}
+
+	onTimerTick() {
+		this.timeoutText.setText("Time: " + this.timeout);
+		console.log(--this.timeout);
+
+		if (this.timeout <= 0) {
+			location.reload();
+		}
+	}
+
+	createTimer() {
+		let event = this.time.addEvent({
+			delay: 1000,
+			callback: this.onTimerTick,
+			callbackScope: this,
+			loop: true
+		})
+	}
+
 	create() {
+		this.timeout = config.timeout;
+		this.createTimer();
 		this.createBackground();
+		this.createText();
 		this.createCard();
 		this.openedCard = null;
 		this.openedCardCount = 0;
@@ -54,6 +83,7 @@ class GameScene extends Phaser.Scene {
 		card.open();
 
 		if (this.openedCardCount === this.cards.length / 2) {
+			event.remove();
 			setTimeout(function () {
 				openModal();
 				modal.addEventListener('click', function closeModal() {
